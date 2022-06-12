@@ -1,43 +1,21 @@
 {
-    "moduleId" : "maps4all/parkopedia",
-    "title" : "Parkopedia",
-    "subtitle" : "www.parkopedia.com",
+    "moduleId" : "maps4all/sytadin",
+    "title" : "Sytadin",
+    "subtitle" : "www.sytadin.fr",
     
     "backButton" : true,
-    "enableGPS" : false,
+    "enableGPS" : true,
     "zoomControl" : false,
     "screenLockRot" : false,
     "reload" : true,
     
-    "shouldOverrideUrlLoading1" : "http://www.parkopedia.mobi",
-    "shouldOverrideUrlLoading2" : "https://www.parkopedia.mobi",
+    "shouldOverrideUrlLoading1" : "http://m.sytadin.fr",
+    "shouldOverrideUrlLoading2" : "https://m.sytadin.fr",
 
-    "loadUrl" : "http://www.parkopedia.mobi/#/map/#lat#,#lng#",   				
+    "loadUrl" : "http://m.sytadin.fr",
     			
-    "browserLaunchLink" : "http://www.parkopedia.mobi/#/map/#lat#,#lng#",
+    "browserLaunchLink" : "http://m.sytadin.fr",
     
-    "onPageFinishedLoadUrl" : "javascript:
-$.getScript('http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js', function(){
-    
-var str = $.cookie('EXCLUDE_FROM_EXPERIMENT');
-    strOut = '1';        
-    $.cookie('EXCLUDE_FROM_EXPERIMENT', strOut);
-    var d = new Date();      
-    $('#fullscreen-overlay').hide();    
-    m = app.map.getMap();     
-    waitAndRetry(0, 4);     
-});
-function waitAndRetry(count, max) { 
-     
-    var millisecondsToWait = 250;
-    if (count >= max) return;
-    m = app.map.getMap();
-    if (m) {    
-        m.setZoom(#zoom#);      
-    } else {       
-        setTimeout(function() {
-            waitAndRetry(count++, max);
-        }, millisecondsToWait);
-    }    
-}"
+    "onPageFinishedLoadUrl" : "javascript: $('#splashScreen').hide(); var newLonLat = new OpenLayers.LonLat(#lng#, #lat#).transform( new OpenLayers.Projection('EPSG:4326'), map.getProjectionObject() );map.setCenter(new OpenLayers.LonLat( newLonLat.lon, newLonLat.lat ), #zoom# - 10, false, true);"
+
 }
